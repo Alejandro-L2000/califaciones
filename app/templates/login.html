@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Iniciar Sesión</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.email.label }}
+        {{ form.email(size=32) }}
+        {{ form.password.label }}
+        {{ form.password(size=32) }}
+        {{ form.remember_me() }}
+        {{ form.submit() }}
+    </form>
+{% endblock %}
