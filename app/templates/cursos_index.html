@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Cursos del Profesor</h1>
+    <a href="{{ url_for('cursos_create') }}"> Crear un curso </a>
+    <ul>
+        { % for in cursos % }
+        <div class="row">
+            <div class="col">
+                <a href="{{ url_for('cursos_show', id=curso.id) }}">{{ curso.name }}</a> <!-- Curso Id -->
+            </div>
+            <div class="col">
+                <a href="{{ url_for('cursos_destroy', id=cursos.id) }}">Eliminar</a>
+            </div>
+        </div>
+        { % endfor % }
+    </ul>
+{% endblock %}

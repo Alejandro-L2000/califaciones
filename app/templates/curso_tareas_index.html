@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Tareas del curso {{curso.name}}</h1>
+    <div class="container">
+        <a href="{{url_for('cursos_tareas_create', id={{curso.id}})}}" class="btn btn-primary">Crear nuevo curso</a>
+    </div>
+    <div class="container">
+        <table class="table">
+            <thead class="thread-dark">
+                <tr>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha de Creación</th>
+                    <th scope="col">Fecha de Entrega</th>
+                    <th scope="col">Puntos</th>
+                </tr>
+            </thead>
+            <tbody>
+            { % for tarea in tareas % }
+                <tr>
+                    <td>{{tarea.titulo}}</td>
+                    <td>{{tarea.descripcion}}</td>
+                    <td>{{tarea.fecha_de_creacion}}</td>
+                    <td>{{tarea.fecha_de_entrega}}</td>
+                    <td>{{tarea.puntos}}</td>
+                </tr>
+            { % endfor % }
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

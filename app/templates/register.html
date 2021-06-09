@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Registro</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.email.label }}
+        {{ form.email(size=32) }}
+        {{ form.password.label }}
+        {{ form.password(size=32) }}
+        {{ form.password_confirm.label }}
+        {{ form.password_confirm(size=32) }}
+        {{ form.submit() }}
+    </form>
+{% endblock %}

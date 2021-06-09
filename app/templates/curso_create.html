@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Registro Curso</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.name.label }}
+        {{ form.name(size=32) }}
+        {{ form.submit() }}
+    </form>
+{% endblock %}

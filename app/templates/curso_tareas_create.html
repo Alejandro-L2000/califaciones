@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>Crear una Tarea para el curso {{curso.name}}</h1>
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.titulo.label }}
+        {{ form.titulo(size=150) }}
+
+        {{ form.fecha_de_creacion.label }}
+        {{ form.fecha_de_creacion(class='datepicker') }}
+        
+        {{ form.fecha_de_entrega.label }}
+        {{ form.fecha_de_entrega(class='datepicker') }}
+        
+        {{ form.descripcion.label }}
+        {{ form.descripcion(size=15000) }}
+        
+        {{ form.puntos.label }}
+        {{ form.puntos(size=32) }}
+
+        {{ form.submit() }}
+    </form>
+{% endblock %}
