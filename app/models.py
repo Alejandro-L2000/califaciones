@@ -43,6 +43,13 @@ class Tarea(db.Model):
     descripcion = db.Column(db.String(1500))
     puntaje = db.Column(db.Integer)
 
+class Calificacion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    # id_curso = db.Column(db.Integer, db.ForeignKey("curso.id"))
+    id_tarea = db.Column(db.Integer, db.ForeignKey("tarea.id"))
+    id_alumno = db.Column(db.Integer, db.ForeignKey("user.id"))
+    calificacion = db.Column(db.Integer)
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))

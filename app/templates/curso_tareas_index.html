@@ -3,7 +3,7 @@
 {% block contenido %}
     <h1>Tareas del curso {{curso.name}}</h1>
     <div class="container">
-        <a href="{{url_for('cursos_tareas_create', id={{curso.id}})}}" class="btn btn-primary">Crear nuevo curso</a>
+        <a href="{{url_for('cursos_tareas_create', id={{curso.id}})}}" class="btn btn-primary">Crear tarea</a>
     </div>
     <div class="container">
         <table class="table">
@@ -14,6 +14,7 @@
                     <th scope="col">Fecha de Creación</th>
                     <th scope="col">Fecha de Entrega</th>
                     <th scope="col">Puntos</th>
+                    <th scope="col">Editar calificaciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +24,8 @@
                     <td>{{tarea.descripcion}}</td>
                     <td>{{tarea.fecha_de_creacion}}</td>
                     <td>{{tarea.fecha_de_entrega}}</td>
-                    <td>{{tarea.puntos}}</td>
+                    <td>{{tarea.puntaje}}</td>
+                    <td><a href="{{url_for('cursos_tareas_calificaciones_edit', id_curso=curso.id, id_tarea=tarea.id)}}" class="btn btn-primary">Editar calificaciones</a></td>
                 </tr>
             { % endfor % }
             </tbody>

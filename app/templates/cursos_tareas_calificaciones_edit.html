@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <h1>{{ curso.name }}</h1>
+    <!-- cursos/<int:id>/alumnos/store -->
+    <div class="container">
+        <form action="{{ url_for('cursos_tareas_calificaciones_update', id_curso=curso.id, id_tarea=tarea.id)}}" method="POST">
+            {% for alumno in alumnos %}
+            {{ calificaciones }}
+            {{ alumno.id }}
+            <div class="row">
+                <label class="column" for="{{alumno.id}}">{{alumno.email}}</label>
+                <!-- Consultar calificacion del alumno -->
+                <input class="column" type="text" name="{{alumno.id}}" id="{{alumno.id}}" value="{% if calificaciones[alumno.id] %}{{calificaciones[alumno.id]}}{% else %}0{% endif %}">
+            </div>
+            {% endfor %}
+            <input type="submit" value="Guardar cambios">
+        </form>
+    </div>
+{% endblock %}
