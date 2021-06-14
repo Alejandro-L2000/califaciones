@@ -155,6 +155,7 @@ def cursos_tareas_calificaciones_edit(id_curso, id_tarea):
     curso = Curso.query.filter_by(id=id_curso).first()
     tarea = Curso.query.filter_by(id=id_tarea).first()
     calificaciones = Calificacion.query.filter_by(id_tarea=id_tarea).all()
+    calificaciones_dict = {}
     for calificacion in calificaciones:
         calificaciones_dict[calificacion.id_alumno] = calificacion.calificacion
     return render_template("cursos_tareas_calificaciones_edit.html", curso=curso, tarea=tarea, alumnos=curso.alumnos, calificaciones=calificaciones_dict)
