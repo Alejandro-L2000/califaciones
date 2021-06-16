@@ -5,11 +5,14 @@ from flask_login import UserMixin
 from app import login
 
 class User(UserMixin, db.Model):
+    __tablename__="user"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), index=True, unique=True)
     name = db.Column(db.String(120), index=True)
     apellido_paterno = db.Column(db.String(120), index=True)
     apellido_materno = db.Column(db.String(120))
+    profesor = db.Column(db.Boolean, default=False)
+    admin = db.Column(db.Boolean, default=False)
     matricula = db.Column(db.String(10), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     cursos = db.relationship("Curso", backref="profesor", lazy="dynamic")
@@ -29,12 +32,14 @@ usuario_curso = db.Table("usuario_curso",
     )
 
 class Curso(db.Model):
+    __tablename__="curso"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120))
     id_profesor = db.Column(db.Integer, db.ForeignKey("user.id"))
-    alumnos = db.relationship("User", secondary=usuario_curso, lazy="subquery", backref=db.backref("cursos",lazy=True))
+    alumnos = db.relationship("User", secondary=usuario_curso, lazy="subquery", backref=db.backref("curso",lazy=True))
 
 class Tarea(db.Model):
+    __tablename__="tarea"
     id = db.Column(db.Integer, primary_key=True)
     id_curso = db.Column(db.Integer, db.ForeignKey("curso.id"))
     titulo = db.Column(db.String(150))
@@ -44,6 +49,7 @@ class Tarea(db.Model):
     puntaje = db.Column(db.Integer)
 
 class Calificacion(db.Model):
+    __tablename__="calificaciones"
     id = db.Column(db.Integer, primary_key=True)
     # id_curso = db.Column(db.Integer, db.ForeignKey("curso.id"))
     id_tarea = db.Column(db.Integer, db.ForeignKey("tarea.id"))
