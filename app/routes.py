@@ -78,7 +78,7 @@ def cursos_create():
     if form.validate_on_submit():
         print(form.name.data)
         curso = Curso(name = form.name.data, id_profesor = current_user.id)
-        db.session.add(Curso)
+        db.session.add(curso)
         db.session.commit()
         return redirect(url_for("cursos_index"))
     else:
@@ -86,8 +86,8 @@ def cursos_create():
         return render_template("curso_create.html", form=form)
 
 # <!-- cursos/<int:id>/alumnos/store -->
-@login_required
 @app.route("/cursos/<int:id_curso>/alumnos/store", methods=["POST"])
+@login_required
 def cursos_alumnos_store(id_curso):
     correos = request.form["alumnos"]
     correos = correos.replace(" ","")
